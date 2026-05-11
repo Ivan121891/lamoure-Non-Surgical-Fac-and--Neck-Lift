@@ -2,7 +2,7 @@
   "use strict";
 
   // ------- Configuration -------
-  const SERVICE_NAME = "Jawline Sculpting Treatment";
+  const SERVICE_NAME = "Non-Surgical Facelift & Neck Lift";
   const SERVICE_DURATION_MIN = 60;
 
   // GHL credentials
@@ -282,7 +282,7 @@
         email,
         phone,
         source: 'Jawline Sculpting LP',
-        tags: ['Jawline Sculpting Treatment'],
+        tags: ['Non-Surgical Facelift & Neck Lift'],
       });
       const contactId = contactRes.contact?.id || contactRes.id;
 
@@ -294,7 +294,7 @@
         assignedUserId: GHL.userId,
         startTime: isoInTz(start, BUSINESS_TZ),
         endTime:   isoInTz(end,   BUSINESS_TZ),
-        title:     `${name} — Jawline Sculpting Treatment`,
+        title:     `${name} — Non-Surgical Facelift & Neck Lift`,
       });
 
       track("Lead", { content_name: SERVICE_NAME });

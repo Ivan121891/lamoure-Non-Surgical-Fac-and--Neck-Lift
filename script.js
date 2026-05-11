@@ -29,7 +29,6 @@
   // ------- Elements -------
   const $ = (id) => document.getElementById(id);
   const dateGrid = $("date-grid");
-  const timeGrid = $("time-grid");
   const timeLoading = $("time-loading");
   const timeSummary    = $("time-summary");
   const detailsSummary = $("details-summary");
@@ -200,7 +199,6 @@
     selectedTime = null;
     selectedSlotIso = null;
     renderMonth();
-    timeGrid.innerHTML = "";
     if (timeLoading) timeLoading.classList.remove("hidden");
     timeSummary.textContent = formatLongDate(selectedDate);
     showStep("time");
@@ -213,7 +211,10 @@
     } catch (err) {
       console.error("Failed to fetch slots", err);
       if (timeLoading) timeLoading.classList.add("hidden");
-      timeGrid.innerHTML = '<p style="font-size:.875rem;color:var(--muted-foreground);text-align:center;grid-column:1/-1;padding:16px 0;">Could not load available times. Please try again.</p>';
+      const morningGrid = $("morning-grid");
+      const afternoonGrid = $("afternoon-grid");
+      if (morningGrid) morningGrid.innerHTML = '<p style="font-size:.875rem;color:var(--muted-foreground);text-align:center;padding:16px 0;">Could not load times</p>';
+      if (afternoonGrid) afternoonGrid.innerHTML = "";
     }
   }
 

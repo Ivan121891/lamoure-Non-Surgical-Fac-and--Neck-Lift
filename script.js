@@ -323,7 +323,7 @@ const start = new Date(selectedSlotIso);
     gcalLink.href = buildGCalUrl(p);
   }
 
-  function buildGCalUrl(/* p */) {
+  function buildGCalUrl(p) {
     const startMs = new Date(selectedSlotIso).getTime();
     const endMs = startMs + SERVICE_DURATION_MIN * 60000;
     const fmt = function (ms) {

@@ -118,9 +118,9 @@
     dateGrid.innerHTML = "";
     const cells = [];
     const cursor = new Date(today);
-    while (cells.length < 5) {
-      // Skip Sunday (day 0) and Saturday (day 6)
-      if (cursor.getDay() !== 0 && cursor.getDay() !== 6) {
+    while (cells.length < 6) {
+      // Skip Sunday (day 0)
+      if (cursor.getDay() !== 0) {
         cells.push(new Date(cursor));
       }
       cursor.setDate(cursor.getDate() + 1);

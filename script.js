@@ -15,7 +15,7 @@
     version:    '2021-07-28',
   };
 
-  const BUSINESS_TZ = "America/Los_Angeles";
+  const BUSINESS_TZ = "Europe/London";
   const DOW_SHORT = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
   const STEPS = ["date", "time", "details", "confirmed"];
 
@@ -118,9 +118,9 @@
     dateGrid.innerHTML = "";
     const cells = [];
     const cursor = new Date(today);
-    while (cells.length < 6) {
-      // Skip Sunday (day 0)
-      if (cursor.getDay() !== 0) {
+    while (cells.length < 5) {
+      // Skip Sunday (day 0) and Saturday (day 6)
+      if (cursor.getDay() !== 0 && cursor.getDay() !== 6) {
         cells.push(new Date(cursor));
       }
       cursor.setDate(cursor.getDate() + 1);

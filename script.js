@@ -284,8 +284,8 @@ const start = new Date(selectedSlotIso);
         locationId: GHL.locationId,
         contactId,
         assignedUserId: GHL.userId,
-        startTime: selectedSlotIso,
-        endTime:   isoInTz(endDate, BUSINESS_TZ),
+        startTime: toUtcIso(start),
+        endTime:   toUtcIso(endDate),
         title:     `${name} — Non-Surgical Facelift & Neck Lift`,
       });
 
@@ -348,6 +348,15 @@ const start = new Date(selectedSlotIso);
     return String(s).replace(/[&<>"']/g, (c) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
     }[c]));
+  }
+
+  // ISO 8601 in UTC (Z suffix) — GHL prefers this over timezone-offset strings
+  function toUtcIso(d) {
+    return d.getUTCFullYear() + '-' +
+      pad(d.getUTCMonth() + 1) + '-' +
+      pad(d.getUTCDate()) + 'T' +
+      pad(d.getUTCHours()) + ':' +
+      pad(d.getUTCMinutes()) + ':00.000Z';
   }
 
   // ------- Reset -------

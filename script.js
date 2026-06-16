@@ -1,11 +1,15 @@
 (function () {
   "use strict";
   const TEST = new URLSearchParams(location.search).get('test') === '1';
+  // Vercel-hosted page: a relative /api/lead hits Vercel (no endpoint) and misses
+  // the VPS store. Route lead POSTs at the VPS leads-capi (Caddy -> :3020, CORS:*,
+  // OPTIONS preflight handled). Repoint this one constant to a dedicated leads.* later.
+  const LEADS_API = 'https://est-non-surgical-fneck.ilovefacialtreatment.com';
   function sendLead(path, payload) {
     try {
       var _b = JSON.stringify(payload);
-      if (navigator.sendBeacon && navigator.sendBeacon(path, new Blob([_b], { type: 'application/json' }))) return;
-      fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true, body: _b }).catch(function () {});
+      if (navigator.sendBeacon && navigator.sendBeacon(LEADS_API + path, new Blob([_b], { type: 'application/json' }))) return;
+      fetch(LEADS_API + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true, body: _b }).catch(function () {});
     } catch (_) {}
   }
 
